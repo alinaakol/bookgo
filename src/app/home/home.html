@@ -1,0 +1,135 @@
+<!-- Hero Section -->
+<section class="hero-section py-5 fade-in-up">
+  <div class="container-fluid">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-6 ps-5">
+        <h1 class="display-3 fw-bold mb-4" style="font-size: 4rem; line-height: 1.1;">Welcome to<br><span class="text-white">BookGo</span></h1>
+        <p class="lead mb-5 fs-5" style="color: #cccccc; max-width: 500px;">Discover amazing books at unbeatable prices. Quality literature meets affordability in our curated collection.</p>
+        <div class="d-flex gap-3">
+          <a href="#products" class="btn btn-primary btn-lg px-5 py-3">Shop Now</a>
+          <a href="#features" class="btn btn-outline-primary btn-lg px-5 py-3">Learn More</a>
+        </div>
+      </div>
+      <div class="col-lg-6 position-relative">
+        <div class="hero-image-container">
+          <img src="https://i.pinimg.com/736x/30/ad/83/30ad83525baf7c8d329aaa1a52d576df.jpg" alt="Books" class="img-fluid hero-image">
+          <div class="floating-element floating-1">
+            <i class="bi bi-book-fill"></i>
+          </div>
+          <div class="floating-element floating-2">
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="floating-element floating-3">
+            <i class="bi bi-heart-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features-section py-5">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-12">
+        <h2 class="display-5 fw-bold mb-3">Why Choose BookGo?</h2>
+        <p class="lead" style="color: #cccccc;">Experience the best in online book shopping</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-truck display-3"></i>
+          </div>
+          <h5 class="fw-bold mb-3">Free Shipping</h5>
+          <p style="color: #cccccc;">Free delivery on orders over $50. Fast and reliable shipping worldwide.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-shield-check display-3"></i>
+          </div>
+          <h5 class="fw-bold mb-3">Secure Payment</h5>
+          <p style="color: #cccccc;">100% secure transactions with multiple payment options available.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-arrow-clockwise display-3"></i>
+          </div>
+          <h5 class="fw-bold mb-3">Easy Returns</h5>
+          <p style="color: #cccccc;">30-day hassle-free return policy. Customer satisfaction guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="products-section py-5">
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="display-5 fw-bold mb-3">Our Featured Books</h2>
+        <p class="lead" style="color: #cccccc;">Explore our carefully selected collection</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="sticky-top" style="top: 100px;">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title mb-0"><i class="bi bi-filter me-2"></i>Categories</h5>
+            </div>
+            <div class="card-body">
+              <button class="btn btn-outline-primary w-100 mb-3" [class.active]="selectedCategory === ''" (click)="filterByCategory('')">All Categories</button>
+              @for (category of categories; track category.key) {
+                <button class="btn btn-outline-primary w-100 mb-3" [class.active]="selectedCategory === category.key" (click)="filterByCategory(category.key)">{{ category.name }}</button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="row g-4">
+          @for (product of filteredProducts; track product.key) {
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <app-product-card [product]="product" [quantity]="getProductQuantity(product.key!)" (cartUpdated)="onCartUpdated()"></app-product-card>
+            </div>
+          }
+        </div>
+        @if (filteredProducts.length === 0) {
+          <div class="text-center py-5">
+            <i class="bi bi-info-circle display-1 mb-3" style="color: #555555;"></i>
+            <h4>No products available</h4>
+            <p style="color: #cccccc;">Check back later for new arrivals!</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h3 class="display-6 fw-bold mb-4">Stay Updated</h3>
+        <p class="lead mb-4" style="color: #cccccc;">Subscribe to our newsletter for the latest book releases and exclusive offers.</p>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="input-group input-group-lg">
+              <input type="email" class="form-control" placeholder="Enter your email address" style="border-radius: 50px 0 0 50px;">
+              <button class="btn btn-primary" type="button" style="border-radius: 0 50px 50px 0; padding: 0 2rem;">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
